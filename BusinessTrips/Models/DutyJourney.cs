@@ -7,6 +7,9 @@ namespace BusinessTrips.Models
 {
     public class DutyJourney
     {
+        /// <summary>
+        /// Модель для работы с командировкой сотрудника
+        /// </summary>
         int Id { get; set; }
         public string WorkDay { get; set; }
         public string FreeDay { get; set; }
