@@ -7,10 +7,10 @@ namespace BusinessTrips.Models
 {
     public class Employee
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        string Surname { get; set; }
-        string Lastname { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Lastname { get; set; }
 
         public virtual ICollection<DutyJourney> DutyJourneys { get; set; }
         public Employee()
