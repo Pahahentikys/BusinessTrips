@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DutyJourneysController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Models\BusinessTripsDbInitializer.cs" />
     <Compile Include="Models\DutyJourney.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,6 +276,12 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\DutyJourneys\Create.cshtml" />
+    <Content Include="Views\DutyJourneys\Delete.cshtml" />
+    <Content Include="Views\DutyJourneys\Details.cshtml" />
+    <Content Include="Views\DutyJourneys\Edit.cshtml" />
+    <Content Include="Views\DutyJourneys\Index.cshtml" />
+    <Content Include="Views\Employees\EmployeeSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

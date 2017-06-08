@@ -17,9 +17,11 @@ namespace BusinessTrips.Models
         public string City { get; set; }
         public string Point { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Hotel> Hotels { get; set; }
         public DutyJourney()
         {
             Employees = new List<Employee>();
+            Hotels = new List<Hotel>();
         }
     }
 

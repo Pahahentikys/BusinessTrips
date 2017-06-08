@@ -6,9 +6,32 @@
 
 <h2>Index</h2>
 
-<p>
+
     @Html.ActionLink("Create New", "Create")
-</p>
+    <div class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-offset-0 col-md-10">
+            @using (Ajax.BeginForm("EmployeeSearch", "Employees", new AjaxOptions
+            {
+                UpdateTargetId = "resultSearch",
+                LoadingElementId = "loadingBar",
+                LoadingElementDuration = 800
+            }))
+            {
+                <form action="/EmployeesController/EmployeeSearch" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#resultSearch" id="form0" method="post">
+                    <input type="text" name="text" class="form-control" />
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </form>
+            }
+
+        </div>
+    </div>
+    <div id="resultSearch"></div>
+    <div id="loadingBar" style="display:none; color:red; font-weight:bold"></div>
+</div>
+
+    
+
 <table class="table">
     <tr>
         <th>
@@ -43,3 +66,6 @@
 }
 
 </table>
+
+
+
