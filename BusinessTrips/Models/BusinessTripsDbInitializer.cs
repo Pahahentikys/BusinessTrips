@@ -15,7 +15,6 @@ namespace BusinessTrips.Models
                 FreeDay = "Monday", WorkDay = "Sunday", Employees = new List<Employee>() { empl1 }, Hotels = new List<Hotel>() {h1} };
 
             context.Hotels.Add(h1);
-            DutyJourney dj1 = new DutyJourney { Id = 1, City = "Tomsk", Country = "Russia", Point = "Professioanl courses", FreeDay = "Monday", WorkDay = "Sunday", Employees = new List<Employee>() { empl1 } , Passages  = new List<Passage>() { psg1} };
             context.Passeges.Add(psg1);
             context.Employees.Add(empl1);
             context.DutyJourneys.Add(dj1);
