@@ -11,6 +11,10 @@ namespace BusinessTrips.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Lastname { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string OfficialPosition { get; set; }
+        public string Pasport { get; set; }
+        public string NumberPhone { get; set; }
 
         public virtual ICollection<DutyJourney> DutyJourneys { get; set; }
         public Employee()
