@@ -8,10 +8,11 @@ namespace BusinessTrips.Models
 {
     public class BusinessTripsContext : DbContext
     {
+        public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Passage> Passeges { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<DutyJourney> DutyJourneys { get; set; }
-
+        
         public BusinessTripsContext() : base("BusTripConnection") { }
     }
 }

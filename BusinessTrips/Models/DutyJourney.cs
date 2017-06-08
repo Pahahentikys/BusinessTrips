@@ -17,12 +17,14 @@ namespace BusinessTrips.Models
         public string City { get; set; }
         public string Point { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Hotel> Hotels { get; set; }
         public virtual ICollection<Passage> Passages { get; set; }
         public DutyJourney()
         {
             Employees = new List<Employee>();
             Passages = new List<Passage>();
 
+            Hotels = new List<Hotel>();
         }
     }
 
