@@ -8,6 +8,7 @@ namespace BusinessTrips.Models
 {
     public class BusinessTripsContext : DbContext
     {
+        public DbSet<Passage> Passeges { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<DutyJourney> DutyJourneys { get; set; }
 

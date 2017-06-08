@@ -7,9 +7,10 @@ namespace BusinessTrips.Models
     {
         protected override void Seed(BusinessTripsContext context)
         {
+            Passage psg1 = new Passage { Id = 1, DateofDeparture = new System.DateTime(2017, 10, 10, 9, 00, 00), DateofArrival = new System.DateTime(2017, 10, 12, 12, 10, 00), Transport = "avto", DestinationPoint = "Kemerovo", DeparturePoint = "Tomsk" };
             Employee empl1 = new Employee { Id = 1, Name = "Ivan", Surname = "Ivanovich", Lastname = "Ivanov" };
-            DutyJourney dj1 = new DutyJourney { Id = 1, City = "Tomsk", Country = "Russia", Point = "Professioanl courses", FreeDay = "Monday", WorkDay = "Sunday", Employees = new List<Employee>() { empl1 } };
-
+            DutyJourney dj1 = new DutyJourney { Id = 1, City = "Tomsk", Country = "Russia", Point = "Professioanl courses", FreeDay = "Monday", WorkDay = "Sunday", Employees = new List<Employee>() { empl1 } , Passages  = new List<Passage>() { psg1} };
+            context.Passeges.Add(psg1);
             context.Employees.Add(empl1);
             context.DutyJourneys.Add(dj1);
             base.Seed(context);
