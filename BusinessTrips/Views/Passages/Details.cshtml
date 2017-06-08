@@ -1,0 +1,58 @@
+﻿@model BusinessTrips.Models.Passage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Passage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateofDeparture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateofDeparture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateofArrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateofArrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationPoint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DestinationPoint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeparturePoint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeparturePoint)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
