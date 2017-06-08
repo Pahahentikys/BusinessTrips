@@ -10,7 +10,7 @@ namespace BusinessTrips.Models
         /// <summary>
         /// Модель для работы с командировкой сотрудника
         /// </summary>
-        int Id { get; set; }
+        public int Id { get; set; }
         public string WorkDay { get; set; }
         public string FreeDay { get; set; }
         public string Country { get; set; }
@@ -22,4 +22,5 @@ namespace BusinessTrips.Models
             Employees = new List<Employee>();
         }
     }
+
 }
