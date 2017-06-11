@@ -16,6 +16,9 @@ namespace BusinessTrips.Models
         public string Country { get; set; }
         public string City { get; set; }
         public string Point { get; set; }
+        public string Additionally { get; set; }
+        public DateTime BeginTrip { get; set; }
+        public DateTime FinalTrip { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Hotel> Hotels { get; set; }
         public virtual ICollection<Passage> Passages { get; set; }
