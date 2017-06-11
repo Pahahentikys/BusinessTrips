@@ -55,3 +55,10 @@
 }
 
 </table>
+@Html.ActionLink("Экспорт", "Export", "Entrances", htmlAttributes: new { @class = "btn btn-success" })
+@using (Html.BeginForm("Import", "Entrances", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Raw(ViewBag.Error)
+    <input type="file" name="excelfile" class="btn btn-success" style="margin-top: 10px;" />
+    <input type="submit" value="Импорт" class="btn btn-success" style="margin-top: 10px;" />
+}

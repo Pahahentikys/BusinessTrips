@@ -1,37 +1,41 @@
 ﻿@model IEnumerable<BusinessTrips.Models.Employee>
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+   
+@using (Ajax.BeginForm("test", "Employees",
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        LoadingElementId = "loadingBar",
+        LoadingElementDuration = 1500,
+        UpdateTargetId = "resultSearch",
+    }))
 
-
-    @Html.ActionLink("Create New", "Create")
+{
     <div class="form-horizontal">
-    <div class="form-group">
-        <div class="col-md-offset-0 col-md-10">
-            @using (Ajax.BeginForm("EmployeeSearch", "Employees", new AjaxOptions
-            {
-                UpdateTargetId = "resultSearch",
-                LoadingElementId = "loadingBar",
-                LoadingElementDuration = 800
-            }))
-            {
-                <form action="/EmployeesController/EmployeeSearch" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#resultSearch" id="form0" method="post">
-                    <input type="text" name="text" class="form-control" />
-                    <input type="submit" value="Search" class="btn btn-default" />
-                </form>
-            }
-
+        <div class="form-group">
+            Введите имя сотрудника:
+            <input type="text" name="surname" placeholder="Имя" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-default"/>
         </div>
     </div>
+    <img id="loadingBar" img src ="@Url.Content("~/Content/ajax-loader.gif")" style="display:none"/> 
     <div id="resultSearch"></div>
-    <div id="loadingBar" style="display:none; color:red; font-weight:bold"></div>
-</div>
-
     
+}
 
+
+
+@Html.ActionLink("Create New", "Create")
 <table class="table">
     <tr>
         <th>

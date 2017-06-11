@@ -14,8 +14,6 @@ namespace BusinessTrips.Models
         public string DestinationPoint { get; set; }
         public string DeparturePoint { get; set; }
         public virtual DutyJourney DutyJourney { get; set; }
-        
-
 
     }
 }

@@ -16,15 +16,35 @@ namespace BusinessTrips.Controllers
         private BusinessTripsContext db = new BusinessTripsContext();
 
         [HttpPost]
-        public ActionResult EmployeeSearch(string surname)
+        public ActionResult test(string surname)
         {
-            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
-            if (allEmpls.Count <= 0)
+             var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
+            if (allEmpls == null)
             {
-                return HttpNotFound();
+                ViewBag.Message = "Empty...";
             }
-            return PartialView(allEmpls);
+            ViewBag.Message = "Sent...";
+            return PartialView("Search", allEmpls);   
         }
+
+
+
+        //[HttpGet]
+        //    public ActionResult EmployeeSearch (string name)
+        //{
+        //    if (name != null) {
+        //    var obj = db.Employees.Where(a => a.Name.Contains(name)).ToList();
+        //    return PartialView("EmployeeSearch", obj);
+        //    }
+        //    return View();
+        //}
+
+        //public ActionResult test()
+        //{
+        //    ViewBag.Message = "Привет, я тут";
+        //    return PartialView();
+           
+        //}
 
         // GET: Employees
         public ActionResult Index()
