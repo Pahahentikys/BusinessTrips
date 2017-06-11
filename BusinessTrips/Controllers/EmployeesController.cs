@@ -14,7 +14,7 @@ namespace BusinessTrips.Controllers
     {
         private BusinessTripsContext db = new BusinessTripsContext();
         [HttpPost]
-        public ActionResult test(string surname)
+        public ActionResult Search(string surname)
         {
             var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
             if (allEmpls == null)

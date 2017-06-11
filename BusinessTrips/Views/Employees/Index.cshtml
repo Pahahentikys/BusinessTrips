@@ -1,10 +1,4 @@
 ﻿@model IEnumerable<BusinessTrips.Models.Employee>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
 @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 
@@ -13,6 +7,7 @@
 }
 
 <h2>Index</h2>
+
 
 @using (Ajax.BeginForm("Search", "Employees",
                 new AjaxOptions
