@@ -8,44 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessTrips.Models;
 
-
 namespace BusinessTrips.Controllers
 {
     public class EmployeesController : Controller
     {
         private BusinessTripsContext db = new BusinessTripsContext();
-
         [HttpPost]
         public ActionResult test(string surname)
         {
-             var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
+            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
             if (allEmpls == null)
             {
                 ViewBag.Message = "Empty...";
             }
             ViewBag.Message = "Sent...";
-            return PartialView("Search", allEmpls);   
+            return PartialView("Search", allEmpls);
         }
-
-
-
-        //[HttpGet]
-        //    public ActionResult EmployeeSearch (string name)
-        //{
-        //    if (name != null) {
-        //    var obj = db.Employees.Where(a => a.Name.Contains(name)).ToList();
-        //    return PartialView("EmployeeSearch", obj);
-        //    }
-        //    return View();
-        //}
-
-        //public ActionResult test()
-        //{
-        //    ViewBag.Message = "Привет, я тут";
-        //    return PartialView();
-           
-        //}
-
         // GET: Employees
         public ActionResult Index()
         {
@@ -75,10 +53,10 @@ namespace BusinessTrips.Controllers
 
         // POST: Employees/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,Lastname")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -107,10 +85,10 @@ namespace BusinessTrips.Controllers
 
         // POST: Employees/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Lastname")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone")] Employee employee)
         {
             if (ModelState.IsValid)
             {

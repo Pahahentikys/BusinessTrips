@@ -227,6 +227,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -277,26 +278,26 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\DutyJourneys\Create.cshtml" />
     <Content Include="Views\DutyJourneys\Delete.cshtml" />
     <Content Include="Views\DutyJourneys\Details.cshtml" />
     <Content Include="Views\DutyJourneys\Edit.cshtml" />
     <Content Include="Views\DutyJourneys\Index.cshtml" />
-    <Content Include="Views\Passages\Create.cshtml" />
-    <Content Include="Views\Passages\Delete.cshtml" />
-    <Content Include="Views\Passages\Details.cshtml" />
-    <Content Include="Views\Passages\Edit.cshtml" />
-    <Content Include="Views\Passages\Index.cshtml" />
     <Content Include="Views\Hotels\Create.cshtml" />
     <Content Include="Views\Hotels\Delete.cshtml" />
     <Content Include="Views\Hotels\Details.cshtml" />
     <Content Include="Views\Hotels\Edit.cshtml" />
     <Content Include="Views\Hotels\Index.cshtml" />
+    <Content Include="Views\Passages\Create.cshtml" />
+    <Content Include="Views\Passages\Delete.cshtml" />
+    <Content Include="Views\Passages\Details.cshtml" />
+    <Content Include="Views\Passages\Edit.cshtml" />
+    <Content Include="Views\Passages\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
