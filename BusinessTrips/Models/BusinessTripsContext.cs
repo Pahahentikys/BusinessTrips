@@ -6,7 +6,7 @@ using System.Data;
 
 namespace BusinessTrips.Models
 {
-    public class BusinessTripsContext : DbContext
+    public partial class BusinessTripsContext : DbContext
     {
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Passage> Passeges { get; set; }
