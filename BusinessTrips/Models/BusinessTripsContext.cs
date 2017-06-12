@@ -27,9 +27,10 @@ namespace BusinessTrips.Models
                 .WithRequired(h => h.DutyJourney)
                 .WillCascadeOnDelete(true);
 
-            modelBuilder.Entity<DutyJourney>()
-                .HasMany(dj => dj.Employees)
-                .WithMany(e => e.DutyJourneys);
+            modelBuilder.Entity<Employee>()
+                .HasMany(dj => dj.DutyJourneys)
+                .WithRequired(dj => dj.Employees)
+                .WillCascadeOnDelete(true);
                 
                 
 
