@@ -49,6 +49,7 @@ namespace BusinessTrips.Models
                 FinalTrip = new System.DateTime(2017, 12, 07),
                 Employees = new List<Employee>() { empl1 },
                 Hotels = new List<Hotel>() { h1 },
+                Passages = new List<Passage>() {psg1 },
             };
    
             context.Hotels.Add(h1);

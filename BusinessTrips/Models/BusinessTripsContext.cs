@@ -12,7 +12,34 @@ namespace BusinessTrips.Models
         public DbSet<Passage> Passeges { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<DutyJourney> DutyJourneys { get; set; }
-        
+
         public BusinessTripsContext() : base("BusTripConnection") { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DutyJourney>()
+              .HasMany(p => p.Passages) 
+              .WithRequired(p => p.DutyJourney)  
+              .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<DutyJourney>()
+                .HasMany(h => h.Hotels)
+                .WithRequired(h => h.DutyJourney)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<DutyJourney>()
+                .HasMany(dj => dj.Employees)
+                .WithMany(e => e.DutyJourneys);
+                
+                
+
+         
+            //modelBuilder.Conventions.Remove<>
+            //modelBuilder.Entity<Employee>()
+            //.HasMany(dj => dj.DutyJourneys)
+            //.WithMany(e => e.Employees);
+            //.WillCascadeOnDelete(true);
+        }
+
     }
 }
