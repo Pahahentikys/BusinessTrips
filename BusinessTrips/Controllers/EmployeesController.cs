@@ -10,8 +10,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 using BusinessTrips.Models;
 using System.Threading;
 using Calabonga.Xml.Exports;
-using System.Runtime.Serialization;
-using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 
@@ -23,16 +21,28 @@ namespace BusinessTrips.Controllers
         [HttpPost]
         public ActionResult Search(string surname)
         {
-            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
-            if (allEmpls == null)
+            if (surname == "")
             {
-                ViewBag.Message = "Empty...";
+                ViewBag.Message = "Некорректные данные для поиска!";
+                return PartialView("Search");
             }
-            ViewBag.Message = "Sent...";
+            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
+            if (allEmpls.Count<=0)
+            {
+                ViewBag.Message = "Сотрудник с такой фамилией не найден!";
+                return PartialView("Search");
+            }
+            
             return PartialView("Search", allEmpls);
+
         }
         // GET: Employees
         public ActionResult Index()
+        {
+            return View(db.Employees.ToList());
+        }
+
+        public ActionResult Request()
         {
             return View(db.Employees.ToList());
         }
@@ -247,6 +257,7 @@ namespace BusinessTrips.Controllers
                     //Читаем из файла
                     // Excel.Application ap = new Excel.Application();
 
+               
                     Excel.Application application = new Excel.Application();
                     Excel.Workbook workbook = application.Workbooks.Open(path);
                     Excel.Worksheet worksheet = workbook.ActiveSheet;

@@ -1,0 +1,22 @@
+﻿
+<div class="container">
+    <div style="margin-top: 20px" class="col-md-6">
+        @using (Html.BeginForm("Import", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <form class="form-group">
+                <div class="form-group row">
+                    @Html.Raw(ViewBag.Error)
+                    <div class="form-group row">
+                        <label class="form-control-label" for="file">Выберите импортируемый файл: </label>
+                        <input id="file" type="file" name="excelfile" class="btn btn-primary" style="margin-top: 10px;" />
+                        <input type="submit" value="Импорт" class="btn btn-primary" style="margin-top: 10px;" />
+                    </div>
+                    <div class="form-group row">
+                        @Html.ActionLink("Экспорт", "Export", "Employees", htmlAttributes: new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </form>
+        }
+
+    </div>
+</div>
