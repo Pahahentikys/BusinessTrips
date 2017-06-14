@@ -1,18 +1,17 @@
 ﻿<div class="container">
     <div style="margin-top: 20px" class="col-md-6">
         @using (Ajax.BeginForm("Search", "Employees",
-                                            new AjaxOptions
-                                            {
-                                                InsertionMode = InsertionMode.Replace,
-                                                HttpMethod = "POST",
-                                                LoadingElementId = "loadingBar",
-                                                LoadingElementDuration = 1500,
-                                                UpdateTargetId = "resultSearch",
-                                            }))
+                                                new AjaxOptions
+                                                {
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    HttpMethod = "POST",
+                                                    LoadingElementId = "loadingBar",
+                                                    LoadingElementDuration = 1000,
+                                                    UpdateTargetId = "resultSearch",
+                                                }))
 
         {
-
-
+            //ajax-loader.gif
             <form class="form-group">
                 <div class="form-group row">
                     <label class="form-control-label" for="text">Введите имя сотрудника: </label>
@@ -20,12 +19,11 @@
                 </div>
                 <div class="form-group row">
                     <button type="submit" class="btn btn-primary">Search</button>
+                    <img id="loadingBar" src="@Url.Content("../Content/loading2.gif")" style="display:none" />
                 </div>
             </form>
-
-            <img id="loadingBar" img src="@Url.Content("~/Content/ajax-loader.gif")" style="display:none" />
             <div id="resultSearch"></div>
-
         }
+        
     </div>
 </div>

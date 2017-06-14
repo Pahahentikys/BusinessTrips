@@ -17,7 +17,8 @@ namespace BusinessTrips.Controllers
         // GET: Passages
         public ActionResult Index()
         {
-            return View(db.Passeges.ToList());
+            var passeges = db.Passeges.Include(p => p.DutyJourney);
+            return View(passeges.ToList());
         }
 
         // GET: Passages/Details/5
@@ -38,15 +39,16 @@ namespace BusinessTrips.Controllers
         // GET: Passages/Create
         public ActionResult Create()
         {
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City");
             return View();
         }
 
         // POST: Passages/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DateofDeparture,DateofArrival,Transport,DestinationPoint,DeparturePoint")] Passage passage)
+        public ActionResult Create([Bind(Include = "Id,DateofDeparture,DateofArrival,Transport,DestinationPoint,DeparturePoint,DutyJourneyId")] Passage passage)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace BusinessTrips.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", passage.DutyJourneyId);
             return View(passage);
         }
 
@@ -70,15 +73,16 @@ namespace BusinessTrips.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", passage.DutyJourneyId);
             return View(passage);
         }
 
         // POST: Passages/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DateofDeparture,DateofArrival,Transport,DestinationPoint,DeparturePoint")] Passage passage)
+        public ActionResult Edit([Bind(Include = "Id,DateofDeparture,DateofArrival,Transport,DestinationPoint,DeparturePoint,DutyJourneyId")] Passage passage)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace BusinessTrips.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", passage.DutyJourneyId);
             return View(passage);
         }
 

@@ -43,10 +43,10 @@ namespace BusinessTrips.Controllers
 
         // POST: DutyJourneys/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,WorkDay,FreeDay,Country,City,Point,Additionally,BeginTrip,FinalTrip")] DutyJourney dutyJourney)
+        public ActionResult Create([Bind(Include = "Id,Point,WorkDay,FreeDay,Country,City,Additionally,BeginTrip,FinalTrip")] DutyJourney dutyJourney)
         {
             if (ModelState.IsValid)
             {
@@ -75,10 +75,10 @@ namespace BusinessTrips.Controllers
 
         // POST: DutyJourneys/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,WorkDay,FreeDay,Country,City,Point,Additionally,BeginTrip,FinalTrip")] DutyJourney dutyJourney)
+        public ActionResult Edit([Bind(Include = "Id,Point,WorkDay,FreeDay,Country,City,Additionally,BeginTrip,FinalTrip")] DutyJourney dutyJourney)
         {
             if (ModelState.IsValid)
             {

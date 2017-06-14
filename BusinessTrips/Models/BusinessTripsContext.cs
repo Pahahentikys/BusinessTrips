@@ -15,32 +15,32 @@ namespace BusinessTrips.Models
 
         public BusinessTripsContext() : base("BusTripConnection") { }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<DutyJourney>()
-              .HasMany(p => p.Passages) 
-              .WithRequired(p => p.DutyJourney)  
-              .WillCascadeOnDelete(true);
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<DutyJourney>()
+        //      .HasMany(p => p.Passages) 
+        //      .WithRequired(p => p.DutyJourney)  
+        //      .WillCascadeOnDelete(true);
 
-            modelBuilder.Entity<DutyJourney>()
-                .HasMany(h => h.Hotels)
-                .WithRequired(h => h.DutyJourney)
-                .WillCascadeOnDelete(true);
+        //    modelBuilder.Entity<DutyJourney>()
+        //        .HasMany(h => h.Hotels)
+        //        .WithRequired(h => h.DutyJourney)
+        //        .WillCascadeOnDelete(true);
 
-            modelBuilder.Entity<Employee>()
-                .HasMany(dj => dj.DutyJourneys)
-                .WithRequired(dj => dj.Employees)
-                .WillCascadeOnDelete(true);
+        //    modelBuilder.Entity<Employee>()
+        //        .HasMany(dj => dj.DutyJourneys)
+        //        .WithRequired(dj => dj.Employees)
+        //        .WillCascadeOnDelete(true);
                 
                 
 
          
-            //modelBuilder.Conventions.Remove<>
-            //modelBuilder.Entity<Employee>()
-            //.HasMany(dj => dj.DutyJourneys)
-            //.WithMany(e => e.Employees);
-            //.WillCascadeOnDelete(true);
-        }
+        //    //modelBuilder.Conventions.Remove<>
+        //    //modelBuilder.Entity<Employee>()
+        //    //.HasMany(dj => dj.DutyJourneys)
+        //    //.WithMany(e => e.Employees);
+        //    //.WillCascadeOnDelete(true);
+        //}
 
     }
 }

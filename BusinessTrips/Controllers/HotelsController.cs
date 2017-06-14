@@ -17,7 +17,8 @@ namespace BusinessTrips.Controllers
         // GET: Hotels
         public ActionResult Index()
         {
-            return View(db.Hotels.ToList());
+            var hotels = db.Hotels.Include(h => h.DutyJourney);
+            return View(hotels.ToList());
         }
 
         // GET: Hotels/Details/5
@@ -38,15 +39,16 @@ namespace BusinessTrips.Controllers
         // GET: Hotels/Create
         public ActionResult Create()
         {
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City");
             return View();
         }
 
         // POST: Hotels/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Address,City,DateIn,DateEnd")] Hotel hotel)
+        public ActionResult Create([Bind(Include = "Id,Name,Address,City,DateIn,DateEnd,DutyJourneyId")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace BusinessTrips.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", hotel.DutyJourneyId);
             return View(hotel);
         }
 
@@ -70,15 +73,16 @@ namespace BusinessTrips.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", hotel.DutyJourneyId);
             return View(hotel);
         }
 
         // POST: Hotels/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Address,City,DateIn,DateEnd")] Hotel hotel)
+        public ActionResult Edit([Bind(Include = "Id,Name,Address,City,DateIn,DateEnd,DutyJourneyId")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace BusinessTrips.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "City", hotel.DutyJourneyId);
             return View(hotel);
         }
 

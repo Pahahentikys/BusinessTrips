@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Excel = Microsoft.Office.Interop.Excel;
 using BusinessTrips.Models;
-using System.Threading;
+using Excel = Microsoft.Office.Interop.Excel;
 using Calabonga.Xml.Exports;
 using System.Globalization;
 using System.Text;
+using System.Threading;
 
 namespace BusinessTrips.Controllers
 {
     public class EmployeesController : Controller
     {
         private BusinessTripsContext db = new BusinessTripsContext();
+
         [HttpPost]
         public ActionResult Search(string surname)
         {
@@ -27,130 +28,16 @@ namespace BusinessTrips.Controllers
                 return PartialView("Search");
             }
             var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
-            if (allEmpls.Count<=0)
+            if (allEmpls.Count <= 0)
             {
                 ViewBag.Message = "Сотрудник с такой фамилией не найден!";
                 return PartialView("Search");
             }
-            
+
             return PartialView("Search", allEmpls);
 
         }
-        // GET: Employees
-        public ActionResult Index()
-        {
-            return View(db.Employees.ToList());
-        }
 
-        public ActionResult Request()
-        {
-            return View(db.Employees.ToList());
-        }
-
-        // GET: Employees/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
-
-        // GET: Employees/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Employees/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Employees.Add(employee);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(employee);
-        }
-
-        // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
-
-        // POST: Employees/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(employee);
-        }
-
-        // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
-
-        // POST: Employees/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        //ЭКСЕЛЬ!!!!! сука ротебал
         public ActionResult Export()
         {
             string result = string.Empty;
@@ -236,6 +123,7 @@ namespace BusinessTrips.Controllers
                 ctx1.Response.End();
             }
         }
+
         [HttpPost]
         public ActionResult Import(HttpPostedFileBase excelfile)
         {
@@ -257,7 +145,7 @@ namespace BusinessTrips.Controllers
                     //Читаем из файла
                     // Excel.Application ap = new Excel.Application();
 
-               
+
                     Excel.Application application = new Excel.Application();
                     Excel.Workbook workbook = application.Workbooks.Open(path);
                     Excel.Worksheet worksheet = workbook.ActiveSheet;
@@ -265,7 +153,7 @@ namespace BusinessTrips.Controllers
                     List<Employee> employeeCompositions = new List<Employee>();
                     for (int row = 2; row <= range.Rows.Count; row++)
                     {
-                        Employee employeeComposition = new Employee(); 
+                        Employee employeeComposition = new Employee();
                         employeeComposition.Name = Convert.ToString(((Excel.Range)range.Cells[row, 1]).Text);
                         employeeComposition.Surname = Convert.ToString(((Excel.Range)range.Cells[row, 2]).Text);
                         employeeComposition.Lastname = Convert.ToString(((Excel.Range)range.Cells[row, 3]).Text);
@@ -291,6 +179,125 @@ namespace BusinessTrips.Controllers
 
         }
 
-    }
-    }
+        // GET: Employees
+        public ActionResult Index()
+        {
+            var employees = db.Employees.Include(e => e.DutyJourneys);
+            return View(employees.ToList());
+        }
 
+        public ActionResult Request()
+        {
+            var employees = db.Employees.Include(e => e.DutyJourneys);
+            return View(db.Employees.ToList());
+        }
+
+        // GET: Employees/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+        // GET: Employees/Create
+        public ActionResult Create()
+        {
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "Point");
+            return View();
+        }
+
+        // POST: Employees/Create
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone,DutyJourneyId")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "Point", employee.DutyJourneyId);
+            return View(employee);
+        }
+
+        // GET: Employees/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "Point", employee.DutyJourneyId);
+            return View(employee);
+        }
+
+        // POST: Employees/Edit/5
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Lastname,BirthDate,OfficialPosition,Pasport,NumberPhone,DutyJourneyId")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.DutyJourneyId = new SelectList(db.DutyJourneys, "Id", "Point", employee.DutyJourneyId);
+            return View(employee);
+        }
+
+        // GET: Employees/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+        // POST: Employees/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Employee employee = db.Employees.Find(id);
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
