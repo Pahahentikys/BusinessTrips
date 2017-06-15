@@ -21,21 +21,6 @@ namespace BusinessTrips.Controllers
             return View(db.DutyJourneys.ToList());
         }
 
-        // GET: DutyJourneys/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DutyJourney dutyJourney = db.DutyJourneys.Find(id);
-            if (dutyJourney == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dutyJourney);
-        }
-
         // GET: DutyJourneys/Create
         public ActionResult Create()
         {

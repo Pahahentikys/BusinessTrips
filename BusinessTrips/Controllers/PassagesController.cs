@@ -22,21 +22,6 @@ namespace BusinessTrips.Controllers
             return View(passeges.ToList());
         }
 
-        // GET: Passages/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Passage passage = db.Passeges.Find(id);
-            if (passage == null)
-            {
-                return HttpNotFound();
-            }
-            return View(passage);
-        }
-
         // GET: Passages/Create
         public ActionResult Create()
         {

@@ -22,21 +22,6 @@ namespace BusinessTrips.Controllers
             return View(hotels.ToList());
         }
 
-        // GET: Hotels/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Hotel hotel = db.Hotels.Find(id);
-            if (hotel == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hotel);
-        }
-
         // GET: Hotels/Create
         public ActionResult Create()
         {

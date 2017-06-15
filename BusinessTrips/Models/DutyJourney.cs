@@ -27,7 +27,9 @@ namespace BusinessTrips.Models
         public string City { get; set; }
         [Display(Name = "Описание: ")]
         public string Additionally { get; set; }
+        [Display(Name = "Начало командировки: ")]
         public DateTime BeginTrip { get; set; }
+        [Display(Name = "Конец командировки: ")]
         public DateTime FinalTrip { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }

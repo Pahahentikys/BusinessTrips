@@ -211,7 +211,6 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PassagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -293,33 +292,24 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\DutyJourneys\Create.cshtml" />
     <Content Include="Views\DutyJourneys\Delete.cshtml" />
-    <Content Include="Views\DutyJourneys\Details.cshtml" />
     <Content Include="Views\DutyJourneys\Edit.cshtml" />
     <Content Include="Views\DutyJourneys\Index.cshtml" />
     <Content Include="Views\Hotels\Create.cshtml" />
     <Content Include="Views\Hotels\Delete.cshtml" />
-    <Content Include="Views\Hotels\Details.cshtml" />
     <Content Include="Views\Hotels\Edit.cshtml" />
     <Content Include="Views\Hotels\Index.cshtml" />
     <Content Include="Views\Passages\Create.cshtml" />
     <Content Include="Views\Passages\Delete.cshtml" />
-    <Content Include="Views\Passages\Details.cshtml" />
     <Content Include="Views\Passages\Edit.cshtml" />
     <Content Include="Views\Passages\Index.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Search.cshtml" />
     <Content Include="Views\Employees\_SearchEmplForm.cshtml" />
     <Content Include="Views\Employees\_ImportAndExportEmplForm.cshtml" />
     <Content Include="Views\Employees\Request.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
