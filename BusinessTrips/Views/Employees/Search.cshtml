@@ -2,6 +2,8 @@
 @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
 <h2>@ViewBag.Message</h2>
+@Html.Raw(ViewBag.data)
+@ViewBag.dataAll
 @if (Model != null)
 {
 
@@ -48,11 +50,16 @@
             </th>
         </tr>
 
+        @*foreach (var item in Model)*@
         @foreach (var item in Model)
         {
+            
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.DutyJourneys.Point)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Transport)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DutyJourneys.City)
@@ -94,4 +101,5 @@
         }
 
     </table>
+
 }

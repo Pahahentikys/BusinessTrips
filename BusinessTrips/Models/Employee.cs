@@ -37,6 +37,7 @@ namespace BusinessTrips.Models
 
         public int DutyJourneyId { get; set; }
         public virtual DutyJourney DutyJourneys { get; set; }
-
+        public string City { get; internal set; }
+        public string Transport { get; internal set; }
     }
 }
