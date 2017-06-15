@@ -3,8 +3,8 @@ using System.Data.Entity;
 
 namespace BusinessTrips.Models
 {
-    //public class BusinessTripsDbInitializer : DropCreateDatabaseIfModelChanges<BusinessTripsContext>
-    public class BusinessTripsDbInitializer : DropCreateDatabaseAlways<BusinessTripsContext>
+    public class BusinessTripsDbInitializer : DropCreateDatabaseIfModelChanges<BusinessTripsContext>
+    //public class BusinessTripsDbInitializer : DropCreateDatabaseAlways<BusinessTripsContext>
     {
         protected override void Seed(BusinessTripsContext context)
         {

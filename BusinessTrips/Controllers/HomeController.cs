@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace BusinessTrips.Controllers
 {
+    [Authorize(Users = "admin@mailSibCemAdmin.ru,  kadr@mailSibCemKadr.ru")]
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -15,6 +15,7 @@ using System.Threading;
 
 namespace BusinessTrips.Controllers
 {
+    [Authorize(Users = "admin@mailSibCemAdmin.ru, kadr@mailSibCemKadr.ru")]
     public class EmployeesController : Controller
     {
         private BusinessTripsContext db = new BusinessTripsContext();
@@ -125,6 +126,7 @@ namespace BusinessTrips.Controllers
         }
 
         [HttpPost]
+        [Authorize(Users = "admin@mailSibCemAdmin.ru")]
         public ActionResult Import(HttpPostedFileBase excelfile)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
@@ -266,6 +268,7 @@ namespace BusinessTrips.Controllers
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Users = "admin@mailSibCemAdmin.ru")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -283,6 +286,7 @@ namespace BusinessTrips.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "admin@mailSibCemAdmin.ru")]
         public ActionResult DeleteConfirmed(int id)
         {
             Employee employee = db.Employees.Find(id);

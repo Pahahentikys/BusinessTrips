@@ -10,6 +10,7 @@ using BusinessTrips.Models;
 
 namespace BusinessTrips.Controllers
 {
+    [Authorize(Users = "admin@mailSibCemAdmin.ru, kadr@mailSibCemKadr.ru")]
     public class DutyJourneysController : Controller
     {
         private BusinessTripsContext db = new BusinessTripsContext();
@@ -89,7 +90,9 @@ namespace BusinessTrips.Controllers
             return View(dutyJourney);
         }
 
+
         // GET: DutyJourneys/Delete/5
+        [Authorize(Users = "admin@mailSibCemAdmin.ru")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +110,7 @@ namespace BusinessTrips.Controllers
         // POST: DutyJourneys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "admin@mailSibCemAdmin.ru")]
         public ActionResult DeleteConfirmed(int id)
         {
             DutyJourney dutyJourney = db.DutyJourneys.Find(id);
