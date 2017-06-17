@@ -24,7 +24,7 @@ namespace BusinessTrips.Models
         public string Lastname { get; set; }
         [Required(ErrorMessage = "Заполните данное поле!")]
         [Display(Name = "Дата рождения сотрудника: ")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         [Required(ErrorMessage ="Заполните данное поле!")]
         [Display(Name = "Должность сотрудника: ")]
         public string OfficialPosition { get; set; }
@@ -37,7 +37,6 @@ namespace BusinessTrips.Models
 
         public int DutyJourneyId { get; set; }
         public virtual DutyJourney DutyJourneys { get; set; }
-        public string City { get; internal set; }
-        public string Transport { get; internal set; }
+
     }
 }

@@ -306,10 +306,10 @@
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Employees\Search.cshtml" />
-    <Content Include="Views\Employees\_SearchEmplForm.cshtml" />
     <Content Include="Views\Employees\_ImportAndExportEmplForm.cshtml" />
-    <Content Include="Views\Employees\Request.cshtml" />
+    <Content Include="Views\DutyJourneys\_Search.cshtml" />
+    <Content Include="Views\DutyJourneys\_Request.cshtml" />
+    <Content Include="Views\DutyJourneys\_SearchEmplForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
