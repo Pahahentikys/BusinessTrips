@@ -2,6 +2,21 @@
 <table class="table">
     <tr>
         <th>
+            Имя
+        </th>
+        <th>
+            Фамилия
+        </th>
+        <th>
+           Отчество
+        </th>
+        <th>
+            Должность
+        </th>
+        <th>
+            Номер телефона
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Point)
         </th>
         <th>
@@ -48,6 +63,27 @@
     @foreach (var item in Model)
     {
         <tr>
+
+            @foreach (var empl in item.Employees)
+            {
+                <td>
+                    @empl.Name
+                </td>
+                <td>
+                    @empl.Surname
+                </td>
+                <td>
+                    @empl.Lastname
+                </td>
+            <td>
+                @empl.OfficialPosition
+            </td>
+            <td>
+                @empl.NumberPhone
+            </td>
+
+            }
+
             <td>
                 @Html.DisplayFor(modelItem => item.Point)
             </td>
@@ -100,3 +136,21 @@
 
 </table>
 
+@using (Html.BeginForm("ExportToWord", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form class="form-group">
+        <div class="form-group row">
+            <div class="form-group row">
+
+                
+                        <input id="file" type="text" name="Surname" style="display:none;" value="@foreach (var item in Model)
+                {                        foreach (var empl in item.Employees)
+                        {
+                                @empl.Surname
+                        }}" />
+                        <input type="submit" value="Импорт" class="btn btn-primary" style="margin-top: 10px;" />
+</div>
+           
+        </div>
+    </form>
+}

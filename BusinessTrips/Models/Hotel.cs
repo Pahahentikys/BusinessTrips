@@ -16,9 +16,9 @@ namespace BusinessTrips.Models
         public string Address { get; set; }
         [Display(Name = "Город отеля: ")]
         public string City { get; set; }
-        [Display(Name = "Дата прибытия: ")]
+        [Display(Name = "Дата заселения: ")]
         public DateTime? DateIn { get; set; }
-        [Display(Name = "Название отправки: ")]
+        [Display(Name = "Дата выселения: ")]
         public DateTime? DateEnd { get; set; }
 
         public int DutyJourneyId { get; set; }

@@ -51,6 +51,7 @@ namespace BusinessTrips.Controllers
                                          Additionally = dj.Additionally,
                                          Passages = dj.Passages,
                                          Hotels = dj.Hotels,
+                                         Employees = dj.Employees
                                      };
 
 

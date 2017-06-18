@@ -272,22 +272,134 @@ namespace BusinessTrips.Controllers
             base.Dispose(disposing);
         }
         //ВОРД
-        public void ExportToWord(string Name, string Age)
+        public void ExportToWord(string Surname)
         {
-            string savePath = Server.MapPath("..\tests/PersonInfo.doc");
-            string templatePath = Server.MapPath("..\tests/123.doc");
+            var allEmpls = db.Employees.Where(a => a.Surname.Contains(Surname)).ToList();
+
+            var dutyJourneyListAll = from dj in db.DutyJourneys.ToList()
+                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.Id
+                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.Id
+                                     join empls in db.Employees on passage.DutyJourneyId equals empls.DutyJourneyId
+                                     select new DutyJourney
+                                     {
+                                         Point = dj.Point,
+                                         BeginTrip = dj.BeginTrip,
+                                         FinalTrip = dj.FinalTrip,
+                                         WorkDay = dj.WorkDay,
+                                         FreeDay = dj.FreeDay,
+                                         Country = dj.Country,
+                                         City = dj.City,
+                                         Additionally = dj.Additionally,
+                                         Passages = dj.Passages,
+                                         Hotels = dj.Hotels,
+                                         Employees = dj.Employees
+                                     };
+
+            string savePath = Server.MapPath("../tests/PersonInfo.doc");
+            string templatePath = Server.MapPath("../tests/123.doc");
             Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
             Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
             doc = app.Documents.Open(templatePath);
             doc.Activate();
-            if (doc.Bookmarks.Exists("Name"))
+            foreach (var dj in dutyJourneyListAll)
             {
-                doc.Bookmarks["Name"].Range.Text = Name;
+                foreach(var empl in dj.Employees)
+                {
+                    if (doc.Bookmarks.Exists("NameEmpl"))
+                    {
+                        doc.Bookmarks["NameEmpl"].Range.Text = empl.Name;
+                    }
+                    if (doc.Bookmarks.Exists("Surname"))
+                    {
+                        doc.Bookmarks["Surname"].Range.Text = empl.Surname;
+                    }
+                    if (doc.Bookmarks.Exists("Lastname"))
+                    {
+                        doc.Bookmarks["Lastname"].Range.Text = empl.Lastname;
+                    }
+                    if (doc.Bookmarks.Exists("OfficialPosition"))
+                    {
+                        doc.Bookmarks["OfficialPosition"].Range.Text = empl.OfficialPosition;
+                    }
+                    if (doc.Bookmarks.Exists("NumberPhone"))
+                    {
+                        doc.Bookmarks["NumberPhone"].Range.Text = empl.NumberPhone;
+                    }
+                    if (doc.Bookmarks.Exists("Country"))
+                    {
+                        doc.Bookmarks["Country"].Range.Text = dj.Country;
+                    }
+                    if (doc.Bookmarks.Exists("City"))
+                    {
+                        doc.Bookmarks["City"].Range.Text = dj.City;
+                    }
+                    if (doc.Bookmarks.Exists("BeginTrip"))
+                    {
+                        doc.Bookmarks["BeginTrip"].Range.Text = dj.BeginTrip.ToString();
+                    }
+                    if (doc.Bookmarks.Exists("FinalTrip"))
+                    {
+                        doc.Bookmarks["FinalTrip"].Range.Text = dj.FinalTrip.ToString();
+                    }
+                    if (doc.Bookmarks.Exists("WorkDay"))
+                    {
+                        doc.Bookmarks["WorkDay"].Range.Text = dj.WorkDay;
+                    }
+                    if (doc.Bookmarks.Exists("FreeDay"))
+                    {
+                        doc.Bookmarks["FreeDay"].Range.Text = dj.FreeDay;
+                    }
+                    if (doc.Bookmarks.Exists("Point"))
+                    {
+                        doc.Bookmarks["Point"].Range.Text = dj.Point;
+                    }
+                    if (doc.Bookmarks.Exists("Additionally"))
+                    {
+                        doc.Bookmarks["Additionally"].Range.Text = dj.Additionally;
+                    }
+                    
+
+                }
+                foreach(var htl in dj.Hotels)
+                {
+                    if (doc.Bookmarks.Exists("CityHotel"))
+                    {
+                        doc.Bookmarks["CityHotel"].Range.Text = htl.City;
+                    }
+                    if (doc.Bookmarks.Exists("NameHotel"))
+                    {
+                        doc.Bookmarks["NameHotel"].Range.Text = htl.Name;
+                    }
+                    if (doc.Bookmarks.Exists("DateIn"))
+                    {
+                        doc.Bookmarks["DateIn"].Range.Text = htl.DateIn.ToString();
+                    }
+                    if (doc.Bookmarks.Exists("DateEnd"))
+                    {
+                        doc.Bookmarks["DateEnd"].Range.Text = htl.DateEnd.ToString();
+                    }
+
+                }
+                foreach(var pas in dj.Passages)
+                {
+                    if (doc.Bookmarks.Exists("Transport"))
+                    {
+                        doc.Bookmarks["Transport"].Range.Text = pas.Transport;
+                    }
+                    if (doc.Bookmarks.Exists("DateofDeparture"))
+                    {
+                        doc.Bookmarks["DateofDeparture"].Range.Text = pas.DateofDeparture.ToString();
+                    }
+                }
             }
-            if (doc.Bookmarks.Exists("Surname"))
-            {
-                doc.Bookmarks["Surname"].Range.Text = Age;
-            }
+            //if (doc.Bookmarks.Exists("Name"))
+            //{
+            //    doc.Bookmarks["Name"].Range.Text = Name;
+            //}
+            //if (doc.Bookmarks.Exists("Surname"))
+            //{
+            //    doc.Bookmarks["Surname"].Range.Text = Age;
+            //}
            
             doc.SaveAs2(savePath);
             app.Application.Quit();
