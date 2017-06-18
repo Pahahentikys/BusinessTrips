@@ -271,5 +271,27 @@ namespace BusinessTrips.Controllers
             }
             base.Dispose(disposing);
         }
+        //ВОРД
+        public void ExportToWord(string Name, string Age)
+        {
+            string savePath = Server.MapPath("..\tests/PersonInfo.doc");
+            string templatePath = Server.MapPath("..\tests/123.doc");
+            Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+            Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
+            doc = app.Documents.Open(templatePath);
+            doc.Activate();
+            if (doc.Bookmarks.Exists("Name"))
+            {
+                doc.Bookmarks["Name"].Range.Text = Name;
+            }
+            if (doc.Bookmarks.Exists("Surname"))
+            {
+                doc.Bookmarks["Surname"].Range.Text = Age;
+            }
+           
+            doc.SaveAs2(savePath);
+            app.Application.Quit();
+            Response.Write("Success");
+        }
     }
 }
