@@ -21,9 +21,7 @@
                 @Html.ActionLink("Оформление Командировки", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                <ul class="nav navbar-nav">    
                     <li>@Html.ActionLink("Сотрудник", "Index", "Employees")</li>
                     <li>@Html.ActionLink("Отель", "Index", "Hotels")</li>
                     <li>@Html.ActionLink("Командировка", "Index", "DutyJourneys")</li>
@@ -40,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение для формирования командировки сотруднику в ОАО "Сибирский цемент"</p>
+            <p>&copy; @DateTime.Now.Year – приложение для формирования заявки на командировку сотруднику в ОАО "Сибирский цемент"</p>
         </footer>
     </div>
 

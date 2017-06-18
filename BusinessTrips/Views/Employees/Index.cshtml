@@ -5,11 +5,11 @@
 }
 
 <p style="margin-top:50px">
-       <h2>Страница добавления сотрудника: </h2>
+       <h2>Страница работы с сотрудниками: </h2>
 </p>
 @Html.Partial("_ImportAndExportEmplForm")
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать", "Create")
 </p>
 <table class="table">
     <tr>
@@ -67,10 +67,10 @@
             @Html.DisplayFor(modelItem => item.NumberPhone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) 
             @if (User.IsInRole("Admin"))
             {
-                Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                Html.ActionLink("Удалить", "Delete", new { id = item.Id });
             }
         </td>
     </tr>
