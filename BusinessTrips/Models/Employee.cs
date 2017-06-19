@@ -24,7 +24,7 @@ namespace BusinessTrips.Models
         public string Lastname { get; set; }
         [Required(ErrorMessage = "Заполните данное поле!")]
         [Display(Name = "Дата рождения сотрудника: ")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         [Required(ErrorMessage ="Заполните данное поле!")]
         [Display(Name = "Должность сотрудника: ")]
         public string OfficialPosition { get; set; }

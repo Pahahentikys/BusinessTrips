@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BusinessTrips.Models.DutyJourney>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreeDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Additionally)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalTrip)
+        </th>
+        <th>
+            Транспорт:
+        </th>
+        <th>
+            Дата выезда:
+        </th>
+        <th>
+            Город отеля:
+        </th>
+        <th>
+            Название отеля:
+        </th>
+        <th>
+            Дата заселения:
+        </th>
+        <th>
+            Дата выселения:
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Point)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FreeDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Additionally)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalTrip)
+            </td>
+            @foreach (var passage in item.Passages)
+            {
+                <td>
+                    @passage.Transport
+                </td>
+                <td>
+                    @passage.DateofDeparture
+                </td>
+            }
+            @foreach(var hotel in item.Hotels) { 
+            <td>
+                @hotel.City
+            </td>
+            <td>
+                @hotel.Name
+            </td>
+            <td>
+                @hotel.DateIn
+            </td>
+            <td>
+                @hotel.DateEnd
+            </td>
+            }
+        </tr>
+    }
+
+</table>
+

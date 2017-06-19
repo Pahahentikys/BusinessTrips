@@ -11,9 +11,9 @@ namespace BusinessTrips.Models
     {
         public int Id { get; set; }
         [Display(Name ="Дата отъезда: ")]
-        public DateTime DateofDeparture { get; set; }
+        public DateTime? DateofDeparture { get; set; }
         [Display(Name = "Дата приезда: ")]
-        public DateTime DateofArrival { get; set; }
+        public DateTime? DateofArrival { get; set; }
         [Display(Name = "Транспорт: ")]
         public string Transport { get; set; }
         [Display(Name = "Место назначения: ")]

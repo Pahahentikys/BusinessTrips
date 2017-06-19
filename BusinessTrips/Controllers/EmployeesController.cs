@@ -20,25 +20,6 @@ namespace BusinessTrips.Controllers
     {
         private BusinessTripsContext db = new BusinessTripsContext();
 
-        [HttpPost]
-        public ActionResult Search(string surname)
-        {
-            if (surname == "")
-            {
-                ViewBag.Message = "Некорректные данные для поиска!";
-                return PartialView("Search");
-            }
-            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
-            if (allEmpls.Count <= 0)
-            {
-                ViewBag.Message = "Сотрудник с такой фамилией не найден!";
-                return PartialView("Search");
-            }
-
-            return PartialView("Search", allEmpls);
-
-        }
-
         public ActionResult Export()
         {
             string result = string.Empty;
@@ -187,11 +168,13 @@ namespace BusinessTrips.Controllers
             var employees = db.Employees.Include(e => e.DutyJourneys);
             return View(employees.ToList());
         }
-
+        [Authorize(Users = "kadr@mailSibCemKadr.ru")]
         public ActionResult Request()
         {
             var employees = db.Employees.Include(e => e.DutyJourneys);
+            //var request = db.Employees.Include(e => e.DutyJourneys).Include(e => e.RequestPassage).Include(e => e.RequestHotel);
             return View(db.Employees.ToList());
+            //return View(request.ToList());
         }
 
         // GET: Employees/Create

@@ -15,9 +15,62 @@ namespace BusinessTrips.Controllers
     {
         private BusinessTripsContext db = new BusinessTripsContext();
 
+        [HttpPost]
+        public ActionResult Search(string surname)
+        {
+            if (surname == "")
+            {
+                ViewBag.Message = "Некорректные данные для поиска!";
+                return PartialView("Search");
+            }
+
+            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
+
+            if (allEmpls.Count <= 0)
+            {
+                ViewBag.Message = "Сотрудник с такой фамилией не найден!";
+                return PartialView("Search");
+            }
+
+
+
+
+            var dutyJourneyListAll = from dj in db.DutyJourneys.ToList()
+                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.DutyJourneyId
+                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.DutyJourneyId
+                                     join empls in db.Employees on passage.DutyJourneyId equals empls.DutyJourneyId where empls.Surname == surname
+                                     select new DutyJourney
+                                     {
+                                         Point = dj.Point,
+                                         BeginTrip = dj.BeginTrip,
+                                         FinalTrip = dj.FinalTrip,
+                                         WorkDay = dj.WorkDay,
+                                         FreeDay = dj.FreeDay,
+                                         Country = dj.Country,
+                                         City = dj.City,
+                                         Additionally = dj.Additionally,
+                                         Passages = dj.Passages,
+                                         Hotels = dj.Hotels,
+                                     };
+
+
+            return PartialView("_Search", dutyJourneyListAll);
+
+        }
+
+        [Authorize(Users = "kadr@mailSibCemKadr.ru")]
+        public ActionResult _Request()
+        {
+            var dutyJournes = db.DutyJourneys.Include(dj => dj.Employees).Include(dj => dj.Hotels).Include(dj => dj.Passages);
+            return View(dutyJournes);
+         
+        }
+
+
         // GET: DutyJourneys
         public ActionResult Index()
         {
+            
             return View(db.DutyJourneys.ToList());
         }
 

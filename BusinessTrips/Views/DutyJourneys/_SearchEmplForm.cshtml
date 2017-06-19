@@ -1,14 +1,14 @@
 ﻿<div class="container">
     <div style="margin-top: 20px" class="col-md-6">
-        @using (Ajax.BeginForm("Search", "Employees",
-                                                new AjaxOptions
-                                                {
-                                                    InsertionMode = InsertionMode.Replace,
-                                                    HttpMethod = "POST",
-                                                    LoadingElementId = "loadingBar",
-                                                    LoadingElementDuration = 1000,
-                                                    UpdateTargetId = "resultSearch",
-                                                }))
+        @using (Ajax.BeginForm("Search", "DutyJourneys",
+                                                    new AjaxOptions
+                                                    {
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        HttpMethod = "POST",
+                                                        LoadingElementId = "loadingBar",
+                                                        LoadingElementDuration = 1000,
+                                                        UpdateTargetId = "resultSearch",
+                                                    }))
 
         {
             //ajax-loader.gif
@@ -24,6 +24,6 @@
             </form>
             <div id="resultSearch"></div>
         }
-        
+
     </div>
 </div>
