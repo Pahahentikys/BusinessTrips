@@ -36,9 +36,10 @@ namespace BusinessTrips.Controllers
 
 
             var dutyJourneyListAll = from dj in db.DutyJourneys.ToList()
-                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.Id
-                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.Id
+                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.DutyJourneyId
+                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.DutyJourneyId
                                      join empls in db.Employees on passage.DutyJourneyId equals empls.DutyJourneyId
+                                     where empls.Surname == surname
                                      select new DutyJourney
                                      {
                                          Point = dj.Point,

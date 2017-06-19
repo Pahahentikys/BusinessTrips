@@ -272,14 +272,15 @@ namespace BusinessTrips.Controllers
             base.Dispose(disposing);
         }
         //ВОРД
-        public void ExportToWord(string Surname)
+        public void ExportToWord(string surname)
         {
-            var allEmpls = db.Employees.Where(a => a.Surname.Contains(Surname)).ToList();
+            var allEmpls = db.Employees.Where(a => a.Surname.Contains(surname)).ToList();
 
             var dutyJourneyListAll = from dj in db.DutyJourneys.ToList()
-                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.Id
-                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.Id
+                                     join hotel in db.Hotels.ToList() on dj.Id equals hotel.DutyJourneyId
+                                     join passage in db.Passeges.ToList() on hotel.DutyJourneyId equals passage.DutyJourneyId
                                      join empls in db.Employees on passage.DutyJourneyId equals empls.DutyJourneyId
+                                     where empls.Surname == surname
                                      select new DutyJourney
                                      {
                                          Point = dj.Point,

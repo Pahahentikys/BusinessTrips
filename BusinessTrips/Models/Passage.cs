@@ -16,7 +16,7 @@ namespace BusinessTrips.Models
         public DateTime? DateofArrival { get; set; }
         [Display(Name = "Транспорт: ")]
         public string Transport { get; set; }
-        [Display(Name = "Место назначения: ")]
+        [Display(Name = "Место отправления: ")]
         public string DestinationPoint { get; set; }
         [Display(Name = "Место прибытия: ")]
         public string DeparturePoint { get; set; }
